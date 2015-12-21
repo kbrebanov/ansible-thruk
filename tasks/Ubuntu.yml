@@ -1,0 +1,20 @@
+---
+# tasks file for thruk (Ubuntu specific)
+
+- name: Add Consol Labs repository key
+  apt_key: >
+    keyserver=keys.gnupg.net
+    id=F8C1CA08A57B9ED7
+    state=present
+  tags: thruk
+
+- name: Add Consol Labs repository
+  apt_repository: >
+    repo='deb http://labs.consol.de/repo/testing/ubuntu trusty main'
+    state=present
+  tags: thruk
+
+- name: Install thruk packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: thruk_packages
+  tags: thruk

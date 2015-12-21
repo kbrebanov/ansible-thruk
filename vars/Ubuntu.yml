@@ -1,0 +1,6 @@
+---
+# vars file for thruk (Ubuntu specific)
+
+thruk_packages:
+  - thruk-base={{ thruk_version }}*
+  - thruk-plugin-reporting={{ thruk_version }}*

@@ -1,2 +1,4 @@
 ---
 # vars file for thruk
+
+thruk_service_name: thruk
