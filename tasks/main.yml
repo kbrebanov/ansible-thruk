@@ -12,3 +12,27 @@
 - include: Ubuntu.yml
   when: ansible_distribution == "Ubuntu"
   tags: thruk
+
+- name: Create Thruk CGI configuration
+  template: >
+    src=cgi.cfg.j2
+    dest=/etc/thruk/cgi.cfg
+    owner=root
+    group=root
+    mode=0644
+  notify: restart thruk
+  tags: thruk
+
+- name: Create Thruk configuration
+  template: >
+    src=thruk_local.conf.j2
+    dest=/etc/thruk/thruk_local.conf
+    owner=www-data
+    group=www-data
+    mode=0644
+  notify: restart thruk
+  tags: thruk
+
+- name: Ensure Thruk service is started and enabled on boot
+  service: name={{ thruk_service_name }} state=started enabled=yes
+  tags: thruk
