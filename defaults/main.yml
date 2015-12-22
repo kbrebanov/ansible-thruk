@@ -47,8 +47,8 @@ thruk_ssi_path: /etc/thruk/ssi/
 thruk_user_template_path: ''
 thruk_logo_path_prefix: ''
 thruk_physical_logo_path: ''
-thruk_mode_file: 0660
-thruk_mode_dir: 0770
+thruk_mode_file: "0660"
+thruk_mode_dir: "0770"
 thruk_resource_file: ''
 
 # Search settings
