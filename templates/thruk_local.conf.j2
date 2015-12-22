@@ -130,17 +130,17 @@ ajax_search_hostgroups = 1
 {% else %}
 ajax_search_hostgroups = 0
 {% endif %}
-{% if ajax_search_services %}
+{% if thruk_ajax_search_services %}
 ajax_search_services = 1
 {% else %}
 ajax_search_services = 0
 {% endif %}
-{% if ajax_search_servicegroups %}
+{% if thruk_ajax_search_servicegroups %}
 ajax_search_servicegroups = 1
 {% else %}
 ajax_search_servicegroups = 0
 {% endif %}
-{% if ajax_search_timeperiods %}
+{% if thruk_ajax_search_timeperiods %}
 ajax_search_timeperiods = 1
 {% else %}
 ajax_search_timeperiods = 0
@@ -166,19 +166,19 @@ service_action_icon = {{ thruk_service_action_icon }}
 {% endif %}
 {% if thruk_initial_menu_states %}
 <initial_menu_state>
-{% if thruk_inital_menu_states.general is defined %}
+{% if thruk_initial_menu_states.general is defined %}
   General = {{ thruk_initial_menu_states.general }}
 {% endif %}
-{% if thruk_inital_menu_states.current_status is defined %}
+{% if thruk_initial_menu_states.current_status is defined %}
   Current_Status = {{ thruk_initial_menu_states.current_status }}
 {% endif %}
-{% if thruk_inital_menu_states.reports is defined %}
+{% if thruk_initial_menu_states.reports is defined %}
   Reports = {{ thruk_initial_menu_states.reports }}
 {% endif %}
-{% if thruk_inital_menu_states.system is defined %}
+{% if thruk_initial_menu_states.system is defined %}
   System = {{ thruk_initial_menu_states.system }}
 {% endif %}
-{% if thruk_inital_menu_states.bookmarks is defined %}
+{% if thruk_initial_menu_states.bookmarks is defined %}
   Bookmarks = {{ thruk_initial_menu_states.bookmarks }}
 {% endif %}
 </initial_menu_state>
