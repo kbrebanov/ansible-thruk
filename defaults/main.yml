@@ -3,6 +3,149 @@
 
 thruk_version: 2.05
 
+# General settings
+thruk_title_prefix: ''
+thruk_use_bookmark_titles: false
+thruk_use_dynamic_titles: true
+thruk_url_prefix: /
+thruk_use_timezone: ''
+thruk_mobile_agent: "iPhone,Android,IEMobile,Mobile"
+thruk_default_theme: Thruk
+thruk_first_day_of_week: 0
+thruk_report_use_temp_files: 14
+thruk_report_max_objects: 1000
+thruk_report_include_class2: true
+thruk_report_update_logcache: true
+thruk_start_page: /thruk/main.html
+thruk_home_link: http://www.thruk.org
+thruk_documentation_link: /thruk/docs/
+thruk_all_problems_link: ''
+thruk_allowed_frame_links: []
+thruk_max_process_memory: 1000
+
+# Authorization settings
+thruk_can_submit_commands: true
+thruk_command_disabled: []
+thruk_make_auth_user_lowercase: true
+thruk_make_auth_user_uppercase: false
+thruk_make_auth_replace_regex: ''
+thruk_use_strict_host_authorization: false
+thruk_csrf_allowed_hosts:
+  - 127.0.0.1
+  - ::1
+thruk_disable_user_password_change: 0
+thruk_user_password_min_length: 5
+
+# Path settings
+thruk_cgi_cfg: /etc/thruk/cgi.cfg
+thruk_log4perl_conf: /etc/thruk/log4perl.conf
+thruk_plugin_path: /etc/thruk/plugins/
+thruk_themes_path: /etc/thruk/themes/
+thruk_var_path: /var/lib/thruk
+thruk_tmp_path: /var/cache/thruk
+thruk_ssi_path: /etc/thruk/ssi/
+thruk_user_template_path: ''
+thruk_logo_path_prefix: ''
+thruk_physical_logo_path: ''
+thruk_mode_file: 0660
+thruk_mode_dir: 0770
+thruk_resource_file: ''
+
+# Search settings
+thruk_use_new_search: true
+thruk_default_service_filter: ''
+thruk_use_ajax_search: true
+thruk_ajax_search_hosts: true
+thruk_ajax_search_hostgroups: true
+thruk_ajax_search_services: true
+thruk_ajax_search_servicegroups: true
+thruk_ajax_search_timeperiods: true
+
+# Paging settings
+thruk_use_pager: true
+thruk_paging_steps: "*100, 500, 1000, 5000, all"
+thruk_group_paging_overview: "*3, 10, 100, all"
+thruk_group_paging_summary: "*10, 50, 100, all"
+thruk_group_paging_grid: "*5, 10, 50, all"
+
+# Display settings
+thruk_host_action_icon: ''
+thruk_service_action_icon: ''
+thruk_initial_menu_states:
+  general: 1
+  current_status: 1
+  reports: 1
+  system: 1
+  bookmarks: 1
+thruk_use_frames: true
+thruk_use_new_command_box: true
+thruk_bug_email_rcpt: bugs@thruk.org
+thruk_datetime_format: "%Y-%m-%d  %H:%M:%S"
+thruk_datetime_format_long: "%a %b %e %H:%M:%S %Z %Y"
+thruk_datetime_format_log: "%B %d, %Y  %H"
+thruk_datetime_format_trends: "%a %b %e %H:%M:%S %Y"
+thruk_datetime_format_today: "%H:%M:%S"
+thruk_info_popup_event_type: onclick
+thruk_info_popup_options: "STICKY,CLOSECLICK,HAUTO,MOUSEOFF"
+thruk_show_notification_number: true
+thruk_show_backends_in_table: false
+thruk_show_config_edit_buttons: false
+thruk_show_full_commandline: 1
+thruk_show_full_commandline_source: check_command
+thruk_show_logout_button: true
+thruk_show_long_plugin_output: popup
+thruk_status_color_background: false
+thruk_show_modified_attributes: true
+thruk_show_host_attempts: false
+thruk_perf_bar_mode: match
+thruk_perf_bar_pnp_popup: true
+thruk_shown_inline_pnp: true
+thruk_graph_word: []
+thruk_show_custom_vars: []
+thruk_expand_user_macros: []
+thruk_show_error_reports: both
+thruk_skip_js_errors: cluetip is not a function
+thruk_strict_passive_mode: true
+thruk_hide_passive_icon: false
+thruk_sitepanel: auto
+
+# Connection settings
+
+# Cookie authentication settings
+
+# Command settings
+
+# Cron settings
+
+# Action menu settings
+
+thruk_use_feature_histogram: 0
+thruk_use_feature_trends: 1
+thruk_use_feature_recurring_downtime: 1
+thruk_use_service_description: 0
+thruk_delay_pages_after_backend_reload: 0
+thruk_ssl_verify_hostnames: 1
+thruk_user: www-data
+thruk_group: www-data
+thruk_force_sticky_ack: 0
+thruk_force_send_notification: 0
+thruk_force_persistent_ack: 0
+thruk_force_persistent_comments: 0
+thruk_downtime_duration: 7200
+thruk_expire_ack_duration: 86400
+thruk_cron_file: /var/cache/thruk/thruk_cron.tmp
+thruk_cron_pre_edit_cmd: "/usr/bin/crontab -l > /var/cache/thruk/thruk_cron.tmp"
+thruk_cron_post_edit_cmd: "/usr/bin/crontab /var/cache/thruk/thruk_cron.tmp && rm -f /var/cache/thruk/thruk_cron.tmp"
+thruk_bin: /usr/bin/thruk
+thruk_init: /etc/init.d/thruk
+thruk_use_wait_feature: 1
+thruk_wait_timeout: 10
+thruk_cookie_auth_login_url: thruk/cgi-bin/login.cgi
+thruk_cookie_auth_restricted_url: http://localhost/thruk/cgi-bin/restricted.cgi
+thruk_cookie_auth_session_timeout: 604800
+thruk_cookie_auth_session_cache_timeout: 5
+
+# CGI settings
 thruk_cgi_show_context_help: 0
 thruk_cgi_use_authentication: 1
 thruk_cgi_use_ssl_authentication: 0
@@ -23,84 +166,3 @@ thruk_cgi_host_down_sound: ../media/critical.wav
 thruk_cgi_service_critical_sound: ../media/critical.wav
 thruk_cgi_service_warning_sound: ../media/warning.wav
 thruk_cgi_service_unknown_sound: ../media/unknown.wav
-
-thruk_url_prefix: /
-thruk_use_bookmark_titles: 0
-thruk_use_dynamic_titles: 1
-thruk_use_strict_host_authorization: 0
-thruk_csrf_allowed_hosts:
-  - 127.0.0.1
-  - ::1
-thruk_disable_user_password_change: 0
-thruk_user_password_min_length: 5
-thruk_max_process_memory: 1000
-thruk_use_frames: 1
-thruk_use_feature_histogram: 0
-thruk_use_feature_trends: 1
-thruk_use_feature_recurring_downtime: 1
-thruk_use_service_description: 0
-thruk_strict_passive_mode: 1
-thruk_hide_passive_icon: 0
-thruk_delay_pages_after_backend_reload: 0
-thruk_ssl_verify_hostnames: 1
-thruk_use_new_search: 1
-thruk_use_new_command_box: 1
-thruk_use_ajax_search: 1
-thruk_ajax_search_hosts: 1
-thruk_ajax_search_hostgroups: 1
-thruk_ajax_search_services: 1
-thruk_ajax_search_servicegroups: 1
-thruk_ajax_search_timeperiods: 1
-thruk_default_theme: Thruk
-thruk_tmp_path: /var/cache/thruk
-thruk_var_path: /var/lib/thruk
-thruk_user: www-data
-thruk_group: www-data
-thruk_ssi_path: /etc/thruk/ssi/
-thruk_plugin_path: /etc/thruk/plugins/
-thruk_themes_path: /etc/thruk/themes/
-thruk_log4perl_conf: /etc/thruk/log4perl.conf
-thruk_use_pager: 1
-thruk_paging_steps: "*100, 500, 1000, 5000, all"
-thruk_group_paging_overview: "*3, 10, 100, all"
-thruk_group_paging_summary: "*10, 50, 100, all"
-thruk_group_paging_grid: "*5, 10, 50, all"
-thruk_show_long_plugin_output: popup
-thruk_status_color_background: 0
-thruk_info_popup_event_type: onclick
-thruk_info_popup_options: STICKY,CLOSECLICK,HAUTO,MOUSEOFF
-thruk_show_notification_number: 1
-thruk_show_config_edit_buttons: 0
-thruk_show_backends_in_table: 0
-thruk_show_full_commandline: 1
-thruk_show_full_commandline_source: check_command
-thruk_perf_bar_mode: match
-thruk_perf_bar_pnp_popup: 1
-thruk_shown_inline_pnp: 1
-thruk_show_modified_attributes: 1
-thruk_can_submit_commands: 1
-thruk_force_sticky_ack: 0
-thruk_force_send_notification: 0
-thruk_force_persistent_ack: 0
-thruk_force_persistent_comments: 0
-thruk_downtime_duration: 7200
-thruk_expire_ack_duration: 86400
-thruk_datetime_format: "%Y-%m-%d  %H:%M:%S"
-thruk_datetime_format_today: "%H:%M:%S"
-thruk_datetime_format_long: "%a %b %e %H:%M:%S %Z %Y"
-thruk_datetime_format_log: "%B %d, %Y  %H"
-thruk_datetime_format_trends: "%a %b %e %H:%M:%S %Y"
-thruk_cron_file: /var/cache/thruk/thruk_cron.tmp
-thruk_cron_pre_edit_cmd: "/usr/bin/crontab -l > /var/cache/thruk/thruk_cron.tmp"
-thruk_cron_post_edit_cmd: "/usr/bin/crontab /var/cache/thruk/thruk_cron.tmp && rm -f /var/cache/thruk/thruk_cron.tmp"
-thruk_bin: /usr/bin/thruk
-thruk_init: /etc/init.d/thruk
-thruk_use_wait_feature: 1
-thruk_wait_timeout: 10
-thruk_mobile_agent: iPhone,Android,IEMobile,Mobile
-thruk_show_error_reports: both
-thruk_skip_js_errors: cluetip is not a function
-thruk_cookie_auth_login_url: thruk/cgi-bin/login.cgi
-thruk_cookie_auth_restricted_url: http://localhost/thruk/cgi-bin/restricted.cgi
-thruk_cookie_auth_session_timeout: 604800
-thruk_cookie_auth_session_cache_timeout: 5

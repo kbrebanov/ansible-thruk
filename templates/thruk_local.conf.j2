@@ -1,69 +1,308 @@
-url_prefix={{ thruk_url_prefix }}
-use_bookmark_titles={{ thruk_use_bookmark_titles }}
-use_dynamic_titles={{ thruk_use_dynamic_titles }}
-use_strict_host_authorization={{ thruk_use_strict_host_authorization }}
-{% for allowed_host in thruk_csrf_allowed_hosts %}
-csrf_allowed_hosts={{ allowed_host }}
+# {{ ansible_managed }}
+
+# General settings
+{% if thruk_title_prefix %}
+title_prefix = {{ thruk_title_prefix }}
+{% endif %}
+{% if thruk_use_bookmark_titles %}
+use_bookmark_titles = 1
+{% else %}
+use_bookmark_titles = 0
+{% endif %}
+{% if thruk_use_dynamic_titles %}
+use_dynamic_titles = 1
+{% else %}
+use_dynamic_titles = 0
+{% endif %}
+url_prefix = {{ thruk_url_prefix }}
+{% if thruk_use_timezone %}
+use_timezone  = {{ thruk_use_timezone }}
+{% endif %}
+mobile_agent = {{ thruk_mobile_agent }}
+default_theme = {{ thruk_default_theme }}
+first_day_of_week = {{ thruk_first_day_of_week }}
+report_use_temp_files = {{ thruk_report_use_temp_files }}
+report_max_objects = {{ thruk_report_max_objects }}
+{% if thruk_report_include_class2 %}
+report_include_class2 = 1
+{% else %}
+report_include_class2 = 0
+{% endif %}
+{% if thruk_report_update_logcache %}
+report_update_logcache = 1
+{% else %}
+report_update_logcache = 0
+{% endif %}
+start_page = {{ thruk_start_page }}
+home_link = {{ thruk_home_link }}
+documentation_link = {{ thruk_documentation_link }}
+{% if thruk_all_problems_link %}
+all_problems_link = {{ thruk_all_problems_link }}
+{% endif %}
+{% if thruk_allowed_frame_links %}
+{% for allowed_frame_link in thruk_allowed_frame_links %}
+allowed_frame_links = {{ allowed_frame_link }}
 {% endfor %}
-disable_user_password_change={{ thruk_disable_user_password_change }}
-user_password_min_length={{ thruk_user_password_min_length }}
-max_process_memory={{ thruk_max_process_memory }}
-use_frames={{ thruk_use_frames }}
+{% endif %}
+max_process_memory = {{ thruk_max_process_memory }}
+
+# Authorization settings
+{% if thruk_can_submit_commands %}
+can_submit_commands = 1
+{% else %}
+can_submit_commands = 0
+{% endif %}
+{% for command_disabled in thruk_command_disabled %}
+command_disabled = {{ command_disabled }}
+{% endfor %}
+{% if thruk_make_auth_user_lowercase %}
+make_auth_user_lowecase = 1
+{% else %}
+make_auth_user_lowecase = 0
+{% endif %}
+{% if thruk_make_auth_user_uppercase %}
+make_auth_user_uppercase = 1
+{% else %}
+make_auth_user_uppercase = 0
+{% endif %}
+{% if thruk_make_auth_replace_regex %}
+make_auth_replace_regex = {{ thruk_make_auth_replace_regex }}
+{% endif %}
+{% if thruk_use_strict_host_authorization %}
+use_strict_host_authorization = 1
+{% else %}
+use_strict_host_authorization = 0
+{% endif %}
+{% for allowed_host in thruk_csrf_allowed_hosts %}
+csrf_allowed_hosts = {{ allowed_host }}
+{% endfor %}
+{% if thruk_disable_user_password_change %}
+disable_user_password_change = 1
+{% else %}
+disable_user_password_change = 0
+{% endif %}
+user_password_min_length = {{ thruk_user_password_min_length }}
+
+# Path settings
+cgi_cfg = {{ thruk_cgi_cfg }}
+log4perl_conf = {{ thruk_log4perl_conf }}
+plugin_path = {{ thruk_plugin_path }}
+themes_path = {{ thruk_themes_path }}
+var_path = {{ thruk_var_path }}
+tmp_path = {{ thruk_tmp_path }}
+ssi_path = {{ thruk_ssi_path }}
+{% if thruk_user_template_path %}
+user_template_path = {{ thruk_user_template_path }}
+{% endif %}
+{% if thruk_logo_path_prefix %}
+logo_path_prefix = {{ thruk_logo_path_prefix }}
+{% endif %}
+{% if thruk_physical_logo_path %}
+physical_logo_path = {{ thruk_physical_logo_path }}
+{% endif %}
+mode_file = {{ thruk_mode_file }}
+mode_dir = {{ thruk_mode_dir }}
+{% if thruk_resource_file %}
+resource_file = {{ thruk_resource_file }}
+{% endif %}
+
+# Search settings
+{% if thruk_use_new_search %}
+use_new_search = 1
+{% else %}
+use_new_search = 0
+{% endif %}
+{% if thruk_default_service_filter %}
+default_service_filter = {{ thruk_default_service_filter }}
+{% endif %}
+{% if thruk_use_ajax_search %}
+use_ajax_search = 1
+{% else %}
+use_ajax_search = 0
+{% endif %}
+{% if thruk_ajax_search_hosts %}
+ajax_search_hosts = 1
+{% else %}
+ajax_search_hosts = 0
+{% endif %}
+{% if thruk_ajax_search_hostgroups %}
+ajax_search_hostgroups = 1
+{% else %}
+ajax_search_hostgroups = 0
+{% endif %}
+{% if ajax_search_services %}
+ajax_search_services = 1
+{% else %}
+ajax_search_services = 0
+{% endif %}
+{% if ajax_search_servicegroups %}
+ajax_search_servicegroups = 1
+{% else %}
+ajax_search_servicegroups = 0
+{% endif %}
+{% if ajax_search_timeperiods %}
+ajax_search_timeperiods = 1
+{% else %}
+ajax_search_timeperiods = 0
+{% endif %}
+
+# Paging settings
+{% if thruk_use_pager %}
+use_pager = 1
+{% else %}
+use_pager = 0
+{% endif %}
+paging_steps = {{ thruk_paging_steps }}
+group_paging_overview = {{ thruk_group_paging_overview }}
+group_paging_summary = {{ thruk_group_paging_summary }}
+group_paging_grid = {{ thruk_group_paging_grid }}
+
+# Display settings
+{% if thruk_host_action_icon %}
+host_action_icon = {{ thruk_host_action_icon }}
+{% endif %}
+{% if thruk_service_action_icon %}
+service_action_icon = {{ thruk_service_action_icon }}
+{% endif %}
+{% if thruk_initial_menu_states %}
+<initial_menu_state>
+{% if thruk_inital_menu_states.general is defined %}
+  General = {{ thruk_initial_menu_states.general }}
+{% endif %}
+{% if thruk_inital_menu_states.current_status is defined %}
+  Current_Status = {{ thruk_initial_menu_states.current_status }}
+{% endif %}
+{% if thruk_inital_menu_states.reports is defined %}
+  Reports = {{ thruk_initial_menu_states.reports }}
+{% endif %}
+{% if thruk_inital_menu_states.system is defined %}
+  System = {{ thruk_initial_menu_states.system }}
+{% endif %}
+{% if thruk_inital_menu_states.bookmarks is defined %}
+  Bookmarks = {{ thruk_initial_menu_states.bookmarks }}
+{% endif %}
+</initial_menu_state>
+{% endif %}
+{% if thruk_use_frames %}
+use_frames = 1
+{% else %}
+use_frames = 0
+{% endif %}
+{% if thruk_use_new_command_box %}
+use_new_command_box = 1
+{% else %}
+use_new_command_box = 0
+{% endif %}
+bug_email_rcpt = {{ thruk_bug_email_rcpt }}
+datetime_format = {{ thruk_datetime_format }}
+datetime_format_long = {{ thruk_datetime_format_long }}
+datetime_format_log = {{ thruk_datetime_format_log }}
+datetime_format_trends = {{ thruk_datetime_format_trends }}
+datetime_format_today = {{ thruk_datetime_format_today }}
+info_popup_event_type = {{ thruk_info_popup_event_type }}
+info_popup_options = {{ thruk_info_popup_options }}
+{% if thruk_show_notification_number %}
+show_notification_number = 1
+{% else %}
+show_notification_number = 0
+{% endif %}
+{% if thruk_show_backends_in_table %}
+show_backends_in_table = 1
+{% else %}
+show_backends_in_table = 0
+{% endif %}
+{% if thruk_show_config_edit_buttons %}
+show_config_edit_buttons = 1
+{% else %}
+show_config_edit_buttons = 0
+{% endif %}
+show_full_commandline = {{ thruk_show_full_commandline }}
+show_full_commandline_source = {{ thruk_show_full_commandline_source }}
+{% if thruk_show_logout_button %}
+show_logout_button = 1
+{% else %}
+show_logout_button = 0
+{% endif %}
+show_long_plugin_output = {{ thruk_show_long_plugin_output }}
+{% if thruk_status_color_background %}
+status_color_background = 1
+{% else %}
+status_color_background = 0
+{% endif %}
+{% if thruk_show_modified_attributes %}
+show_modified_attributes = 1
+{% else %}
+show_modified_attributes = 0
+{% endif %}
+{% if thruk_show_host_attempts %}
+show_host_attempts = 1
+{% else %}
+show_host_attempts = 0
+{% endif %}
+perf_bar_mode = {{ thruk_perf_bar_mode }}
+{% if thruk_perf_bar_pnp_popup %}
+perf_bar_pnp_popup = 1
+{% else %}
+perf_bar_pnp_popup = 0
+{% endif %}
+{% if thruk_shown_inline_pnp %}
+shown_inline_pnp = 1
+{% else %}
+shown_inline_pnp = 0
+{% endif %}
+{% if thruk_graph_word %}
+{% for graph_word in thruk_graph_word %}
+graph_word = {{ graph_word }}
+{% endfor %}
+{% endif %}
+{% if thruk_show_custom_vars %}
+{% for custom_var in thruk_show_custom_vars %}
+show_custom_vars = {{ custom_var }}
+{% endfor %}
+{% endif %}
+{% if thruk_expand_user_macros %}
+{% for user_macro in thruk_expand_user_macros %}
+expand_user_macros = {{ user_macro }}
+{% endfor %}
+{% endif %}
+show_error_reports = {{ thruk_show_error_reports }}
+skip_js_errors = {{ thruk_skip_js_errors }}
+{% if thruk_strict_passive_mode %}
+strict_passive_mode = 1
+{% else %}
+strict_passive_mode = 0
+{% endif %}
+{% if thruk_hide_passive_icon %}
+hide_passive_icon = 1
+{% else %}
+hide_passive_icon = 0
+{% endif %}
+sitepanel = {{ thruk_sitepanel }}
+
+# Connection settings
+
+# Cookie authentication settings
+
+# Command settings
+
+# Cron settings
+
+# Action menu settings
+
 use_feature_histogram={{ thruk_use_feature_histogram }}
 use_feature_trends={{ thruk_use_feature_trends }}
 use_feature_recurring_downtime={{ thruk_use_feature_recurring_downtime }}
 use_service_description={{ thruk_use_service_description }}
-strict_passive_mode={{ thruk_strict_passive_mode }}
-hide_passive_icon={{ thruk_hide_passive_icon }}
 delay_pages_after_backend_reload={{ thruk_delay_pages_after_backend_reload }}
 ssl_verify_hostnames={{ thruk_ssl_verify_hostnames }}
-use_new_search={{ thruk_use_new_search }}
-use_new_command_box={{ thruk_use_new_command_box }}
-use_ajax_search={{ thruk_use_ajax_search }}
-ajax_search_hosts={{ thruk_ajax_search_hosts }}
-ajax_search_hostgroups={{ thruk_ajax_search_hostgroups }}
-ajax_search_services={{ thruk_ajax_search_services }}
-ajax_search_servicegroups={{ thruk_ajax_search_servicegroups }}
-ajax_search_timeperiods={{ thruk_ajax_search_timeperiods }}
-default_theme={{ thruk_default_theme }}
-tmp_path={{ thruk_tmp_path }}
-var_path={{ thruk_var_path }}
 thruk_user={{ thruk_user }}
 thruk_group={{ thruk_group }}
-ssi_path={{ thruk_ssi_path }}
-plugin_path={{ thruk_plugin_path }}
-themes_path={{ thruk_themes_path }}
-log4perl_path={{ thruk_log4perl_conf }}
-use_pager={{ thruk_use_pager }}
-paging_steps={{ thruk_paging_steps }}
-group_paging_overview={{ thruk_group_paging_overview }}
-group_paging_summary={{ thruk_group_paging_summary }}
-group_paging_grid={{ thruk_group_paging_grid }}
-show_long_plugin_output={{ thruk_show_long_plugin_output }}
-status_color_background={{ thruk_status_color_background }}
-info_popup_event_type={{ thruk_info_popup_event_type }}
-info_popup_options={{ thruk_info_popup_options }}
-show_notification_number={{ thruk_show_notification_number }}
-show_config_edit_buttons={{ thruk_show_config_edit_buttons }}
-show_backends_in_table={{ thruk_show_backends_in_table }}
-show_full_commandline={{ thruk_show_full_commandline }}
-show_full_commandline_source={{ thruk_show_full_commandline_source }}
-perf_bar_mode={{ thruk_perf_bar_mode }}
-perf_bar_pnp_popup={{ thruk_perf_bar_pnp_popup }}
-shown_inline_pnp={{ thruk_shown_inline_pnp }}
-show_modified_attributes={{ thruk_show_modified_attributes }}
-can_submit_commands={{ thruk_can_submit_commands }}
 force_sticky_ack={{ thruk_force_sticky_ack }}
 force_send_notification={{ thruk_force_send_notification }}
 force_persistent_ack={{ thruk_force_persistent_ack }}
 force_persistent_comments={{ thruk_force_persistent_comments }}
 downtime_duration={{ thruk_downtime_duration }}
 expire_ack_duration={{ thruk_expire_ack_duration }}
-datetime_format={{ thruk_datetime_format }}
-datetime_format_today={{ thruk_datetime_format_today }}
-datetime_format_long={{ thruk_datetime_format_long }}
-datetime_format_log={{ thruk_datetime_format_log }}
-datetime_format_trends={{ thruk_datetime_format_trends }}
 cron_file={{ thruk_cron_file }}
 cron_pre_edit_cmd={{ thruk_cron_pre_edit_cmd }}
 cron_post_edit_cmd={{ thruk_cron_post_edit_cmd }}
@@ -71,9 +310,6 @@ bin={{ thruk_bin }}
 init={{ thruk_init }}
 use_wait_feature={{ thruk_use_wait_feature }}
 wait_timeout={{ thruk_wait_timeout }}
-mobile_agent={{ thruk_mobile_agent }}
-show_error_reports={{ thruk_show_error_reports }}
-skip_js_errors={{ thruk_skip_js_errors }}
 cookie_auth_login_url={{ thruk_cookie_auth_login_url }}
 cookie_auth_restricted_url={{ thruk_cookie_auth_restricted_url }}
 cookie_auth_sessions_timeout={{ thruk_cookie_auth_session_timeout }}
