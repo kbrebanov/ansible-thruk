@@ -1,2 +1,6 @@
 ---
 # handlers file for thruk
+
+- name: restart thruk
+  service: name={{ thruk_service_name }} state=restarted
+  tags: thruk
