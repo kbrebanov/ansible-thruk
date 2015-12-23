@@ -1,22 +1,40 @@
 # {{ ansible_managed }}
 
-show_context_help={{ thruk_cgi_show_context_help }}
-use_authentication={{ thruk_cgi_use_authentication }}
-use_ssl_authentication={{ thruk_cgi_use_ssl_authentication }}
-authorized_for_system_information={{ thruk_cgi_authorized_for_system_information }}
-authorized_for_configuration_information={{ thruk_cgi_authorized_for_configuration_information }}
-authorized_for_system_commands={{ thruk_cgi_authorized_for_system_commands }}
-authorized_for_all_services={{ thruk_cgi_authorized_for_all_services }}
-authorized_for_all_hosts={{ thruk_cgi_authorized_for_all_hosts }}
-authorized_for_all_service_commands={{ thruk_cgi_authorized_for_all_service_commands }}
-authorized_for_all_host_commands={{ thruk_cgi_authorized_for_all_host_commands }}
-refresh_rate={{ thruk_cgi_refresh_rate }}
-escape_html_tags={{ thruk_cgi_escape_html_tags }}
-action_url_target={{ thruk_cgi_action_url_target }}
-notes_url_target={{ thruk_cgi_notes_url_target }}
-lock_author_names={{ thruk_cgi_lock_author_names }}
-host_unreachable_sound={{ thruk_cgi_host_unreachable_sound }}
-host_down_sound={{ thruk_cgi_host_down_sound }}
-service_critical_sound={{ thruk_cgi_service_critical_sound }}
-service_warning_sound={{ thruk_cgi_service_warning_sound }}
-service_unknown_sound={{ thruk_cgi_service_unknown_sound }}
+{% if thruk_cgi_show_context_help %}
+show_context_help = 1
+{% else %}
+show_context_help = 0
+{% endif %}
+{% if thruk_cgi_use_authentication %}
+use_authentication = 1
+{% else %}
+use_authentication = 0
+{% endif %}
+{% if thruk_cgi_use_ssl_authentication %}
+use_ssl_authentication = 1
+{% else %}
+use_ssl_authentication = 0
+{% endif %}
+{% if thruk_cgi_default_user_name %}
+default_user_name = {{ thruk_cgi_default_user_name }}
+{% endif %}
+authorized_for_system_information = {{ thruk_cgi_authorized_for_system_information | join(",") }}
+authorized_for_configuration_information = {{ thruk_cgi_authorized_for_configuration_information | join(",") }}
+authorized_for_system_commands = {{ thruk_cgi_authorized_for_system_commands | join(",") }}
+authorized_for_all_services = {{ thruk_cgi_authorized_for_all_services | join(",") }}
+authorized_for_all_hosts = {{ thruk_cgi_authorized_for_all_hosts | join(",") }}
+authorized_for_all_service_commands = {{ thruk_cgi_authorized_for_all_service_commands | join(",") }}
+authorized_for_all_host_commands = {{ thruk_cgi_authorized_for_all_host_commands | join(",") }}
+refresh_rate = {{ thruk_cgi_refresh_rate }}
+{% if thruk_cgi_escape_html_tags %}
+escape_html_tags = 1
+{% else %}
+escape_html_tags = 0
+{% endif %}
+action_url_target = {{ thruk_cgi_action_url_target }}
+notes_url_target = {{ thruk_cgi_notes_url_target }}
+{% if thruk_cgi_lock_author_names %}
+lock_author_names = 1
+{% else %}
+lock_author_names = 0
+{% endif %}

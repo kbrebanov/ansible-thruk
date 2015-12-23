@@ -172,32 +172,43 @@ thruk_cron_pre_edit_cmd: "/usr/bin/crontab -l > /var/cache/thruk/thruk_cron.tmp"
 thruk_cron_post_edit_cmd: "/usr/bin/crontab /var/cache/thruk/thruk_cron.tmp && rm -f /var/cache/thruk/thruk_cron.tmp"
 thruk_bin: /usr/bin/thruk
 
+# Action menu settings
+
+# Icinga settings
+thruk_enable_icinga_features: false
+
+# Shinken settings
+thruk_enable_shinken_features: false
+
 # Other settings
 thruk_no_external_job_forks: 0
 thruk_init: /etc/init.d/thruk
 thruk_cookie_path: /
 
 # CGI settings
-thruk_cgi_show_context_help: 0
-thruk_cgi_use_authentication: 1
-thruk_cgi_use_ssl_authentication: 0
-thruk_cgi_authorized_for_system_information: thrukadmin
-thruk_cgi_authorized_for_configuration_information: thrukadmin
-thruk_cgi_authorized_for_system_commands: thrukadmin
-thruk_cgi_authorized_for_all_services: thrukadmin
-thruk_cgi_authorized_for_all_hosts: thrukadmin
-thruk_cgi_authorized_for_all_service_commands: thrukadmin
-thruk_cgi_authorized_for_all_host_commands: thrukadmin
+thruk_cgi_show_context_help: false
+thruk_cgi_use_authentication: true
+thruk_cgi_use_ssl_authentication: false
+thruk_cgi_default_user_name: ''
+thruk_cgi_authorized_for_system_information:
+  - thrukadmin
+thruk_cgi_authorized_for_configuration_information:
+  - thrukadmin
+thruk_cgi_authorized_for_system_commands:
+  - thrukadmin
+thruk_cgi_authorized_for_all_services:
+  - thrukadmin
+thruk_cgi_authorized_for_all_hosts:
+  - thrukadmin
+thruk_cgi_authorized_for_all_service_commands:
+  - thrukadmin
+thruk_cgi_authorized_for_all_host_commands:
+  - thrukadmin
 thruk_cgi_refresh_rate: 90
-thruk_cgi_escape_html_tags: 1
+thruk_cgi_escape_html_tags: true
 thruk_cgi_action_url_target: _blank
 thruk_cgi_notes_url_target: _blank
-thruk_cgi_lock_author_names: 1
-thruk_cgi_host_unreachable_sound: ../media/critical.wav
-thruk_cgi_host_down_sound: ../media/critical.wav
-thruk_cgi_service_critical_sound: ../media/critical.wav
-thruk_cgi_service_warning_sound: ../media/warning.wav
-thruk_cgi_service_unknown_sound: ../media/unknown.wav
+thruk_cgi_lock_author_names: true
 
 # Backend settings
 thruk_backends: []

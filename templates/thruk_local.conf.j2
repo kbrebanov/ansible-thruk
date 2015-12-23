@@ -444,6 +444,22 @@ cron_pre_edit_cmd = {{ thruk_cron_pre_edit_cmd }}
 cron_post_edit_cmd = {{ thruk_cron_post_edit_cmd }}
 thruk_bin = {{ thruk_bin }}
 
+# Action menu settings
+
+# Icinga settings
+{% if thruk_enable_icinga_features %}
+enable_icinga_features = 1
+{% else %}
+enable_icinga_features = 0
+{% endif %}
+
+# Shinken settings
+{% if thruk_enable_shinken_features %}
+enable_shinken_features = 1
+{% else %}
+enable_shinken_features = 0
+{% endif %}
+
 # Other Settings
 {% if thruk_no_external_job_forks %}
 no_external_job_forks = 1
