@@ -166,3 +166,6 @@ thruk_cgi_host_down_sound: ../media/critical.wav
 thruk_cgi_service_critical_sound: ../media/critical.wav
 thruk_cgi_service_warning_sound: ../media/warning.wav
 thruk_cgi_service_unknown_sound: ../media/unknown.wav
+
+# Backend settings
+thruk_backends: []

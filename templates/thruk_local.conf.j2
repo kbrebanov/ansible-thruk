@@ -314,3 +314,72 @@ cookie_auth_login_url={{ thruk_cookie_auth_login_url }}
 cookie_auth_restricted_url={{ thruk_cookie_auth_restricted_url }}
 cookie_auth_sessions_timeout={{ thruk_cookie_auth_session_timeout }}
 cookie_auth_session_cache_timeout={{ thruk_cookie_auth_session_cache_timeout }}
+
+{% if thruk_backends is defined %}
+# Backend settings
+<Component Thruk::Backend>
+{% for backend in thruk_backends %}
+  <peer>
+{% if backend.name is defined %}
+    name = {{ backend.name }}
+{% endif %}
+{% if backend.type is defined %}
+    type = {{ backend.type }}
+{% endif %}
+{% if backend.hidden is defined %}
+    hidden = {{ backend.hidden }}
+{% endif %}
+{% if backend.display is defined %}
+    display = {{ backend.display }}
+{% endif %}
+{% if backend.section is defined %}
+    section = {{ backend.section }}
+{% endif %}
+{% if backend.state_host is defined %}
+    state_host = {{ backend.state_host }}
+{% endif %}
+{% if backend.options is defined %}
+    <options>
+{% if backend.options.peer is defined %}
+      peer = {{ backend.options.peer }}
+{% endif %}
+{% if backend.options.resource_file is defined %}
+      resource_file = {{ backend.options.resource_file }}
+{% endif %}
+    </options>
+{% if backend.configtool is defined %}
+    <configtool>
+{% if backend.configtool.core_type is defined %}
+      core_type = {{ backend.configtool.core_type }}
+{% endif %}
+{% if backend.configtool.core_conf is defined %}
+      core_conf = {{ backend.configtool.core_conf }}
+{% endif %}
+{% if backend.configtool.obj_check_cmd is defined %}
+      obj_check_cmd = {{ backend.configtool.obj_check_cmd }}
+{% endif %}
+{% if backend.configtool.obj_reload_cmd is defined %}
+      obj_reload_cmd = {{ backend.configtool.obj_reload_cmd }}
+{% endif %}
+{% if backend.configtool.obj_readonly is defined %}
+      obj_readonly = {{ backend.configtool.obj_readonly }}
+{% endif %}
+{% if backend.configtool.obj_dir is defined and backend.configtool.core_conf is not defined %}
+      obj_dir = {{ backend.configtool.obj_dir }}
+{% endif %}
+{% if backend.configtool.obj_file is defined and backend.configtool.core_conf is not defined %}
+      obj_file = {{ backend.configtool.obj_file }}
+{% endif %}
+{% if backend.configtool.obj_exclude is defined and backend.configtool.core_conf is not defined %}
+      obj_exclude = {{ backend.configtool.obj_exclude }}
+{% endif %}
+{% if backend.configtool.git_base_dir is defined %}
+      git_base_dir = {{ backend.configtool.git_base_dir }}
+{% endif %}
+    </configtool>
+{% endif %}
+{% endif %}
+  </peer>
+{% endfor %}
+</Component>
+{% endif %}
