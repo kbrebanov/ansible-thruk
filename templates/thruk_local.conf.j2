@@ -1,5 +1,8 @@
 # {{ ansible_managed }}
 
+thruk_user = {{ thruk_user }}
+thruk_group = {{ thruk_group }}
+
 # General settings
 {% if thruk_title_prefix %}
 title_prefix = {{ thruk_title_prefix }}
@@ -280,40 +283,175 @@ hide_passive_icon = 0
 sitepanel = {{ thruk_sitepanel }}
 
 # Connection settings
+{% if thruk_check_local_states %}
+check_local_states = 1
+{% else %}
+check_local_states = 0
+{% endif %}
+{% if thruk_backend_debug %}
+backend_debug = 1
+{% else %}
+backend_debug = 0
+{% endif %}
+onnection_pool_size = {{ thruk_connection_pool_size }}
+{% if thruk_logcache %}
+logcache = {{ thruk_logcache }}
+{% endif %}
+delay_pages_after_backend_reload = {{ thruk_delay_pages_after_backend_reload }}
+{% if thruk_ssl_verify_hostnames %}
+ssl_verify_hostnames = 1
+{% else %}
+ssl_verify_hostnames = 0
+{% endif %}
+use_shadow_naemon = {{ thruk_use_shadow_naemon }}
+{% if shadow_naemon_dir and use_shadow_naemon != 0 %}
+shadow_naemon_dir = {{ thruk_shadow_naemon_dir }}
+{% endif %}
+{% if shadow_naemon_bin and use_shadow_naemon != 0 %}
+shadow_naemon_bin = {{ thruk_shadow_naemon_bin }}
+{% endif %}
 
 # Cookie authentication settings
+cookie_auth_login_url = {{ thruk_cookie_auth_login_url }}
+cookie_auth_restricted_url = {{ thruk_cookie_auth_restricted_url }}
+cookie_auth_sessions_timeout = {{ thruk_cookie_auth_session_timeout }}
+cookie_auth_session_cache_timeout = {{ thruk_cookie_auth_session_cache_timeout }}
+{% if thruk_cookie_auth_domain %}
+cookie_auth_domain = {{ thruk_cookie_auth_domain }}
+{% endif %}
+{% if thruk_cookie_auth_login_hook %}
+cookie_auth_login_hook = {{ thruk_cookie_auth_login_hook }}
+{% endif %}
 
 # Command settings
+{% if thruk_cmd_defaults %}
+<cmd_defaults>
+{% if thruk_cmd_defaults.ahas is defined %}
+  ahas = {{ thruk_cmd_defaults.ahas }}
+{% endif %}
+{% if thruk_cmd_defaults.broadcast_notification is defined %}
+  broadcast_notification = {{ thruk_cmd_defaults.broadcast_notification }}
+{% endif %}
+{% if thruk_cmd_defaults.force_check is defined %}
+  force_check = {{ thruk_cmd_defaults.force_check }}
+{% endif %}
+{% if thruk_cmd_defaults.force_notification is defined %}
+  force_notification = {{ thruk_cmd_defaults.force_notification }}
+{% endif %}
+{% if thruk_cmd_defaults.send_notification is defined %}
+  send_notification = {{ thruk_cmd_defaults.send_notification }}
+{% endif %}
+{% if thruk_cmd_defaults.sticky_ack is defined %}
+  sticky_ack = {{ thruk_cmd_defaults.sticky_ack }}
+{% endif %}
+{% if thruk_cmd_defaults.persistent_comments is defined %}
+  persistent_comments = {{ thruk_cmd_defaults.persistent_comments }}
+{% endif %}
+{% if thruk_cmd_defaults.persistent_ack is defined %}
+  persistent_ack = {{ thruk_cmd_defaults.persistent_ack }}
+{% endif %}
+{% if thruk_cmd_defaults.ptc is defined %}
+  ptc = {{ thruk_cmd_defaults.ptc }}
+{% endif %}
+{% if thruk_cmd_defaults.use_expire is defined %}
+  use_expire = {{ thruk_cmd_defaults.use_expire }}
+{% endif %}
+</cmd_defaults>
+{% endif %}
+{% if thruk_force_sticky_ack %}
+force_sticky_ack = 1
+{% else %}
+force_sticky_ack = 0
+{% endif %}
+{% if thruk_force_send_notification %}
+force_send_notification = 1
+{% else %}
+force_send_notification = 0
+{% endif %}
+{% if thruk_force_persistent_ack %}
+force_persistent_ack = 1
+{% else %}
+force_persistent_ack = 0
+{% endif %}
+{% if thruk_force_persistent_comments %}
+force_persistent_comments = 1
+{% else %}
+force_persistent_comments = 0
+{% endif %}
+downtime_duration = {{ thruk_downtime_duration }}
+expire_ack_duration = {{ thruk_expire_ack_duration }}
+{% if thruk_cmd_quick_status %}
+<cmd_quick_status>
+{% if thruk_cmd_quick_status.reschedule is defined %}
+  reschedule = {{ thruk_cmd_quick_status.reschedule }}
+{% endif %}
+{% if thruk_cmd_quick_status.downtime is defined %}
+  downtime = {{ thruk_cmd_quick_status.downtime }}
+{% endif %}
+{% if thruk_cmd_quick_status.comment is defined %}
+  comment = {{ thruk_cmd_quick_status.comment }}
+{% endif %}
+{% if thruk_cmd_quick_status.acknowledgement is defined %}
+  acknowledgement = {{ thruk_cmd_quick_status.acknowledgement }}
+{% endif %}
+{% if thruk_cmd_quick_status.active_checks is defined %}
+  active_checks = {{ thruk_cmd_quick_status.active_checks }}
+{% endif %}
+{% if thruk_cmd_quick_status.notifications is defined %}
+  notifications = {{ thruk_cmd_quick_status.notifications }}
+{% endif %}
+{% if thruk_cmd_quick_status.submit_result is defined %}
+  submit_result = {{ thruk_cmd_quick_status.submit_result}}
+{% endif %}
+{% if thruk_cmd_quick_status.reset_attributes is defined %}
+  reset_attributes = {{ thruk_cmd_quick_status.reset_attributes }}
+{% endif %}
+</cmd_quick_status>
+{% endif %}
+{% if thruk_command_reschedule_alias %}
+command_reschedule_alias = {{ thruk_command_reschedule_alias }}
+{% endif %}
+{% if thruk_use_feature_recurring_downtime %}
+use_feature_recurring_downtime = 1
+{% else %}
+use_feature_recurring_downtime = 0
+{% endif %}
+{% if thruk_use_feature_histogram %}
+use_feature_histogram = 1
+{% else %}
+use_feature_histogram = 0
+{% endif %}
+{% if thruk_use_service_description %}
+use_service_description = 1
+{% else %}
+use_service_description = 0
+{% endif %}
+{% if thruk_use_feature_trends %}
+use_feature_trends = 1
+{% else %}
+use_feature_trends = 0
+{% endif %}
+{% if thruk_use_wait_feature %}
+use_wait_feature = 1
+{% else %}
+use_wait_feature = 0
+{% endif %}
+wait_timeout = {{ thruk_wait_timeout }}
 
 # Cron settings
+cron_file = {{ thruk_cron_file }}
+cron_pre_edit_cmd = {{ thruk_cron_pre_edit_cmd }}
+cron_post_edit_cmd = {{ thruk_cron_post_edit_cmd }}
+thruk_bin = {{ thruk_bin }}
 
-# Action menu settings
-
-use_feature_histogram={{ thruk_use_feature_histogram }}
-use_feature_trends={{ thruk_use_feature_trends }}
-use_feature_recurring_downtime={{ thruk_use_feature_recurring_downtime }}
-use_service_description={{ thruk_use_service_description }}
-delay_pages_after_backend_reload={{ thruk_delay_pages_after_backend_reload }}
-ssl_verify_hostnames={{ thruk_ssl_verify_hostnames }}
-thruk_user={{ thruk_user }}
-thruk_group={{ thruk_group }}
-force_sticky_ack={{ thruk_force_sticky_ack }}
-force_send_notification={{ thruk_force_send_notification }}
-force_persistent_ack={{ thruk_force_persistent_ack }}
-force_persistent_comments={{ thruk_force_persistent_comments }}
-downtime_duration={{ thruk_downtime_duration }}
-expire_ack_duration={{ thruk_expire_ack_duration }}
-cron_file={{ thruk_cron_file }}
-cron_pre_edit_cmd={{ thruk_cron_pre_edit_cmd }}
-cron_post_edit_cmd={{ thruk_cron_post_edit_cmd }}
-bin={{ thruk_bin }}
-init={{ thruk_init }}
-use_wait_feature={{ thruk_use_wait_feature }}
-wait_timeout={{ thruk_wait_timeout }}
-cookie_auth_login_url={{ thruk_cookie_auth_login_url }}
-cookie_auth_restricted_url={{ thruk_cookie_auth_restricted_url }}
-cookie_auth_sessions_timeout={{ thruk_cookie_auth_session_timeout }}
-cookie_auth_session_cache_timeout={{ thruk_cookie_auth_session_cache_timeout }}
+# Other Settings
+{% if thruk_no_external_job_forks %}
+no_external_job_forks = 1
+{% else %}
+no_external_job_forks = 0
+{% endif %}
+thruk_init = {{ thruk_init }}
+cookie_path = {{ thruk_cookie_path }}
 
 {% if thruk_backends is defined %}
 # Backend settings

@@ -3,6 +3,9 @@
 
 thruk_version: 2.05
 
+thruk_user: www-data
+thruk_group: www-data
+
 # General settings
 thruk_title_prefix: ''
 thruk_use_bookmark_titles: false
@@ -110,40 +113,69 @@ thruk_hide_passive_icon: false
 thruk_sitepanel: auto
 
 # Connection settings
+thruk_check_local_states: false
+thruk_backend_debug: false
+thruk_connection_pool_size: 0
+thruk_logcache: ''
+thruk_delay_pages_after_backend_reload: 0
+thruk_ssl_verify_hostnames: true
+thruk_use_shadow_naemon: 0
+thruk_shadow_naemon_dir: ''
+thruk_shadow_naemon_bin: ''
 
 # Cookie authentication settings
+thruk_cookie_auth_login_url: thruk/cgi-bin/login.cgi
+thruk_cookie_auth_restricted_url: http://localhost/thruk/cgi-bin/restricted.cgi
+thruk_cookie_auth_session_timeout: 604800
+thruk_cookie_auth_session_cache_timeout: 5
+thruk_cookie_auth_domain: ''
+thruk_cookie_auth_login_hook: ''
 
 # Command settings
-
-# Cron settings
-
-# Action menu settings
-
-thruk_use_feature_histogram: 0
-thruk_use_feature_trends: 1
-thruk_use_feature_recurring_downtime: 1
-thruk_use_service_description: 0
-thruk_delay_pages_after_backend_reload: 0
-thruk_ssl_verify_hostnames: 1
-thruk_user: www-data
-thruk_group: www-data
+thruk_cmd_defaults:
+  ahas: 0
+  broadcast_notification: 0
+  force_check: 0
+  force_notification: 0
+  send_notification: 1
+  sticky_ack: 1
+  persistent_comments: 1
+  persistent_ack: 0
+  ptc: 0
+  use_expire: 0
 thruk_force_sticky_ack: 0
 thruk_force_send_notification: 0
 thruk_force_persistent_ack: 0
 thruk_force_persistent_comments: 0
 thruk_downtime_duration: 7200
 thruk_expire_ack_duration: 86400
+thruk_cmd_quick_status:
+  reschedule: 0
+  downtime: 0
+  comment: 0
+  acknowledgement: 0
+  active_checks: 0
+  notifications: 0
+  submit_result: 0
+  reset_attributes: 0
+thruk_command_reschedule_alias: ''
+thruk_use_feature_recurring_downtime: true
+thruk_use_feature_histogram: false
+thruk_use_service_description: false
+thruk_use_feature_trends: true
+thruk_use_wait_feature: true
+thruk_wait_timeout: 10
+
+# Cron settings
 thruk_cron_file: /var/cache/thruk/thruk_cron.tmp
 thruk_cron_pre_edit_cmd: "/usr/bin/crontab -l > /var/cache/thruk/thruk_cron.tmp"
 thruk_cron_post_edit_cmd: "/usr/bin/crontab /var/cache/thruk/thruk_cron.tmp && rm -f /var/cache/thruk/thruk_cron.tmp"
 thruk_bin: /usr/bin/thruk
+
+# Other settings
+thruk_no_external_job_forks: 0
 thruk_init: /etc/init.d/thruk
-thruk_use_wait_feature: 1
-thruk_wait_timeout: 10
-thruk_cookie_auth_login_url: thruk/cgi-bin/login.cgi
-thruk_cookie_auth_restricted_url: http://localhost/thruk/cgi-bin/restricted.cgi
-thruk_cookie_auth_session_timeout: 604800
-thruk_cookie_auth_session_cache_timeout: 5
+thruk_cookie_path: /
 
 # CGI settings
 thruk_cgi_show_context_help: 0
