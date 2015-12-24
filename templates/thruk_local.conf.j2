@@ -304,10 +304,10 @@ ssl_verify_hostnames = 1
 ssl_verify_hostnames = 0
 {% endif %}
 use_shadow_naemon = {{ thruk_use_shadow_naemon }}
-{% if shadow_naemon_dir and use_shadow_naemon != 0 %}
+{% if thruk_shadow_naemon_dir and thruk_use_shadow_naemon != 0 %}
 shadow_naemon_dir = {{ thruk_shadow_naemon_dir }}
 {% endif %}
-{% if shadow_naemon_bin and use_shadow_naemon != 0 %}
+{% if thruk_shadow_naemon_bin and thruk_use_shadow_naemon != 0 %}
 shadow_naemon_bin = {{ thruk_shadow_naemon_bin }}
 {% endif %}
 
