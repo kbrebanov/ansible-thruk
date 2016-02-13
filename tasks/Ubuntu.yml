@@ -3,7 +3,7 @@
 
 - name: Add Consol Labs repository key
   apt_key: >
-    keyserver=keys.gnupg.net
+    keyserver=hkp://keys.gnupg.net:80
     id=F8C1CA08A57B9ED7
     state=present
   tags: thruk
